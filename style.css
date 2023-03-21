@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #101010;
+}
+
+.grid-container {
+    height: 100vh;
+    display: grid;
+    grid-template:
+        'navbar navbar' 50px
+        'sidebar main' 1fr
+        /20% 1fr;
+}
+
+.grid-item {
+    border: 1px solid gray;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.navbar {
+    grid-area: navbar;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    font-size: 18px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+}
+
+a {
+    color: #9d9d9d;
+    text-decoration: none;
+}

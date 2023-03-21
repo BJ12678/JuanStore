@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,63 +12,78 @@
     <!-- Custom CSS -->
     <link href="style.css" rel="stylesheet" />
 
+    <!-- Custom Fonts -->
+    <link
+      href="fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
     <!-- VueJs CDN development mode -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
+      <div class="grid-container">
         <!-- Navbar -->
-        <div class="navbar">
-            <button type="button" class="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">Eldan Water Station</a>
+        <div class="grid-item navbar">
+          <a class="navbar-brand" href="index.html">
+            <span class="navbar-toggler-icon">
+              <i class="fas fa-bars"></i>
+            </span>
+            Juan Store
+          </a>
         </div>
 
         <!-- Sidebar -->
-        <div class="sidebar">
-            <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="#" v-on:click.prevent="currentTab = 'Home'"><i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#" v-on:click.prevent="currentTab = 'Customers'"><i class="fas fa-users"></i> Customers
-                    </a>
-                </li>
-                <li>
-                    <a href="#" v-on:click.prevent="currentTab = 'Sales'"><i class="fas fa-coins"></i> Sales
-                    </a>
-                </li>
-                <li>
-                    <a href="#" v-on:click.prevent="currentTab = 'Expenses'"><i class="fas fa-wrench"></i> Expenses
-                    </a>
-                </li>
-                <li>
-                    <a href="#" v-on:click.prevent="currentTab = 'Financials'"><i class="fas fa-table"></i> Financials
-                    </a>
-                </li>
-                <li>
-                    <a href="#" v-on:click.prevent="currentTab = 'Login'"><i class="fa fa-fw fa-power-off"></i> LogOut
-                    </a>
-                </li>
-            </ul>
+        <div class="grid-item sidebar">
+          <ul class="nav navbar-nav side-nav">
+            <li>
+              <a href="#" v-on:click.prevent="currentTab = 'Home'"
+                ><i class="fas fa-home"></i> Home
+              </a>
+            </li>
+            <li>
+              <a href="#" v-on:click.prevent="currentTab = 'Customers'"
+                ><i class="fas fa-users"></i> Customers
+              </a>
+            </li>
+            <li>
+              <a href="#" v-on:click.prevent="currentTab = 'Sales'"
+                ><i class="fas fa-coins"></i> Sales
+              </a>
+            </li>
+            <li>
+              <a href="#" v-on:click.prevent="currentTab = 'Expenses'"
+                ><i class="fas fa-wrench"></i> Expenses
+              </a>
+            </li>
+            <li>
+              <a href="#" v-on:click.prevent="currentTab = 'Financials'"
+                ><i class="fas fa-table"></i>
+                Financials
+              </a>
+            </li>
+            <li>
+              <a href="#" v-on:click.prevent="currentTab = 'Login'"
+                ><i class="fa fa-fw fa-power-off"></i>
+                LogOut
+              </a>
+            </li>
+          </ul>
         </div>
 
         <!-- Main -->
-        <div class="main">
-            <keep-alive>
-                <component v-bind:is="currentTabComponent"> </component>
-            </keep-alive>
+        <div class="grid-item main">
+          <keep-alive>
+            <component v-bind:is="currentTabComponent"> </component>
+          </keep-alive>
         </div>
+      </div>
     </div>
 
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
