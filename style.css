@@ -13,22 +13,22 @@ body {
     color: #333;
     background-color: #101010;
 }
-
-.grid-container {
+/* grid wrapper section */
+.grid-wrapper {
     height: 100vh;
     display: grid;
     grid-template:
         'navbar navbar' 50px
         'sidebar main' 1fr
-        /20% 1fr;
+        /15% 1fr;
 }
-
 .grid-item {
     border: 1px solid gray;
     padding: 10px;
     justify-content: space-evenly;
 }
 
+/* navbar section */
 .navbar {
     grid-area: navbar;
 }
@@ -39,14 +39,22 @@ body {
     font-size: 18px;
 }
 
+/* sidebar section */
 .sidebar {
     grid-area: sidebar;
+    white-space: nowrap;
+    
+}
+.side-nav {
+    line-height: 30px;
 }
 
+/* main content section */
 .main {
     grid-area: main;
 }
 
+/* utilities sections */
 a {
     color: #9d9d9d;
     text-decoration: none;
