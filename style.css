@@ -20,7 +20,7 @@ body {
     grid-template:
         'navbar navbar' 50px
         'sidebar main' 1fr
-        /15% 1fr;
+        /5em 1fr;
 }
 .grid-item {
     border: 1px solid gray;
@@ -43,10 +43,14 @@ body {
 .sidebar {
     grid-area: sidebar;
     white-space: nowrap;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 .side-nav {
     line-height: 30px;
+    list-style: none;
 }
 
 /* main content section */
