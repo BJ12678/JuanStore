@@ -2,12 +2,63 @@ Vue.component('tab-customers', {
   template: `
   <div>
     <!-- navbar section -->
-    <navbar-comp />
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <span class="navbar-brand mr-1" @click="showSearchBox">
+      Juan Store
+    </span>
+    <button
+      class="btn btn-link btn-sm text-white order-1 order-sm-0"
+      @click.prevent="toggleSidebar"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
 
     <div id="wrapper">
       <!-- sidebar section -->
       <div v-show="toggleSidebar">
-        <sidebar-comp />
+      <ul class="sidebar navbar-nav">
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'customers' }"
+          >Home</router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'delivery' }">
+          Delivery
+        </router-link>
+      </li>
+      <li v-if="userId == 1" class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'sales' }">
+          Sales
+        </router-link>
+      </li>
+      <li v-if="userId === 1" class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'expenses' }">
+          Expenses
+        </router-link>
+      </li>
+      <li v-if="userId === 1" class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'report' }">
+          Financials
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'register' }">
+          Register
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="#"
+          data-toggle="modal"
+          data-target="#logoutModal"
+          >Logout
+        </a>
+      </li>
+    </ul>
       </div>
 
       <div id="content-wrapper">
@@ -131,7 +182,15 @@ Vue.component('tab-customers', {
         </div>
 
         <!-- Sticky Footer -->
-        <footer-comp />
+        <footer class="sticky-footer">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        Copyright © Biler IT Solution 2021
+      </div>
+    </div>
+  </footer>
+
+
       </div>
     </div>
 
@@ -146,27 +205,27 @@ Vue.component('tab-customers', {
         `,
   data() {
     return {
-      selected_id: "",
-      icon_title_add: "Click here to register",
-      icon_title_edit: "Edit",
-      icon_title_upd: "Update",
-      icon_title_cancel: "Cancel",
-      icon_title_del: "Delete"
+      selected_id: '',
+      icon_title_add: 'Click here to register',
+      icon_title_edit: 'Edit',
+      icon_title_upd: 'Update',
+      icon_title_cancel: 'Cancel',
+      icon_title_del: 'Delete'
     };
   },
   computed: {
-    ...Vuex.mapState("customersModule", ["customers"]),
-    ...Vuex.mapState("authModule", ["userId", "toggleSidebar"]),
-    ...Vuex.mapGetters("customersModule", ["totalCustomerGetter"])
+    ...Vuex.mapState('customersModule', ['customers']),
+    ...Vuex.mapState('authModule', ['userId', 'toggleSidebar']),
+    ...Vuex.mapGetters('customersModule', ['totalCustomerGetter'])
   },
   methods: {
-    ...Vuex.mapActions("customersModule", [
-      "getCustomersAction",
-      "updateCustomerAction",
-      "deleteCustomerAction"
+    ...Vuex.mapActions('customersModule', [
+      'getCustomersAction',
+      'updateCustomerAction',
+      'deleteCustomerAction'
     ]),
-    ...Vuex.mapActions("salesModule", ["getSalesAction", "getCustomerDetails"]),
-    ...Vuex.mapActions("expensesModule", ["getItemsAction"]),
+    ...Vuex.mapActions('salesModule', ['getSalesAction', 'getCustomerDetails']),
+    ...Vuex.mapActions('expensesModule', ['getItemsAction']),
 
     myDetails(cust_name) {
       this.getCustomerDetails(cust_name);
@@ -185,11 +244,11 @@ Vue.component('tab-customers', {
         contact: selected_cust.contact,
         passcode: selected_cust.passcode
       });
-      this.selected_id = "";
+      this.selected_id = '';
     },
 
     canclUpdate() {
-      this.selected_id = "";
+      this.selected_id = '';
     }
   }
 });
@@ -3706,26 +3765,26 @@ const customersModule = {
     ]
   }),
   getters: {
-    totalCustomerGetter: state => state.customers.length
+    totalCustomerGetter: (state) => state.customers.length
   },
   actions: {
     getCustomersAction({ commit }) {
-      customerApi.fetchCust().then(res => commit("GET_CUSTOMERS", res.data));
+      customerApi.fetchCust().then((res) => commit('GET_CUSTOMERS', res.data));
     },
     addCustomerAction({ commit }, payload) {
       customerApi
         .addCust(payload)
-        .then(res => commit("ADD_CUSTOMER", payload));
+        .then((res) => commit('ADD_CUSTOMER', payload));
     },
     updateCustomerAction({ commit }, payload) {
       customerApi
         .updateCust(payload)
-        .then(res => commit("UPDATE_CUSTOMER", payload));
+        .then((res) => commit('UPDATE_CUSTOMER', payload));
     },
     deleteCustomerAction({ commit }, payload) {
       customerApi
         .deleteCust(payload)
-        .then(res => commit("DELETE_CUSTOMER", payload));
+        .then((res) => commit('DELETE_CUSTOMER', payload));
     }
   },
   mutations: {
@@ -3737,7 +3796,7 @@ const customersModule = {
     },
     UPDATE_CUSTOMER: (state, cust) => {
       const index = state.customers.findIndex(
-        customer => customer.id === cust.id
+        (customer) => customer.id === cust.id
       );
       if (index !== -1) {
         state.customers.splice(index, 1, cust);
@@ -3745,7 +3804,7 @@ const customersModule = {
     },
     DELETE_CUSTOMER: (state, payload) => {
       const index = state.customers.findIndex(
-        customer => customer.id === payload.id
+        (customer) => customer.id === payload.id
       );
       if (index !== -1) {
         state.customers.splice(index, 1);
@@ -24192,11 +24251,9 @@ const expensesModule = {
 };
 
 var store = new Vuex.Store({
-  state: {
-  },
+  state: {},
   getters: {},
-  actions: {
-  },
+  actions: {},
   mutations: {
     SHOW_ADD_FORM: (state) => {
       state.show_add_form = true;
