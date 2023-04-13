@@ -1,2 +1,0 @@
-# JuanStore
-store management system
