@@ -1,4 +1,4 @@
-Vue.component('tab-home', {
+Vue.component('tab-customers', {
   template: `
   <div>
     <!-- navbar section -->
@@ -155,18 +155,18 @@ Vue.component('tab-home', {
     };
   },
   computed: {
-    ...mapState("customers", ["customers"]),
-    ...mapState("auth", ["userId", "toggleSidebar"]),
-    ...mapGetters("customers", ["totalCustomerGetter"])
+    ...Vuex.mapState("customers", ["customers"]),
+    ...Vuex.mapState("auth", ["userId", "toggleSidebar"]),
+    ...Vuex.mapGetters("customers", ["totalCustomerGetter"])
   },
   methods: {
-    ...mapActions("customers", [
+    ...Vuex.mapActions("customers", [
       "getCustomersAction",
       "updateCustomerAction",
       "deleteCustomerAction"
     ]),
-    ...mapActions("sales", ["getSalesAction", "getCustomerDetails"]),
-    ...mapActions("expenses", ["getItemsAction"]),
+    ...Vuex.mapActions("sales", ["getSalesAction", "getCustomerDetails"]),
+    ...Vuex.mapActions("expenses", ["getItemsAction"]),
 
     myDetails(cust_name) {
       this.getCustomerDetails(cust_name);
