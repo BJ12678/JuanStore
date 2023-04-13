@@ -1,65 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
 
-    <title>Juan Store</title>
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Custom fonts for this template-->
-    <link
-      href="vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- Page level plugin CSS-->
-    <link
-      href="vendor/datatables/dataTables.bootstrap4.min.css"
-      rel="stylesheet"
-    />
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet" />
-    <!-- Use for loading icon only -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-    />
-    <!-- vuejs development mode -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-    <!-- vuejs production mode -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script> -->
+  <title>Juan Store</title>
+  <!-- Bootstrap core CSS-->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet" />
+  <!-- Use for loading icon only -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+  <!-- vuejs development mode -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
 
-    <!-- axios -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-  </head>
+  <!-- vuejs production mode -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script> -->
 
-  <body id="page-top">
-    <div id="app"></div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
-    <!-- Demo scripts for this page-->
-    <script src="js/datatables-demo.js"></script>
-    <!-- Main script -->
-    <script src="main.js"></script>
-  </body>
+  <!-- axios -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+</head>
+
+<body id="page-top">
+  <div id="app">
+    <!-- navbar section -->
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+      <span class="navbar-brand mr-1" @click="showSearchBox">
+        Juan Store
+      </span>
+      <button
+        class="btn btn-link btn-sm text-white order-1 order-sm-0"
+        @click.prevent="toggleSidebar"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+  
+
+    <div id="wrapper">
+      <!-- sidebar section -->
+      <div v-show="toggleSidebar">
+        <ul class="sidebar navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"  href="#" v-on:click.prevent="currentTab = 'Customers'"><i class="fas fa-users"></i> Customers
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'delivery' }">
+              Delivery
+            </router-link>
+          </li>
+          <li v-if="userId == 1" class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'sales' }">
+              Sales
+            </router-link>
+          </li>
+          <li v-if="userId === 1" class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'expenses' }">
+              Expenses
+            </router-link>
+          </li>
+          <li v-if="userId === 1" class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'report' }">
+              Financials
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'register' }">
+              Register
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#"
+              data-toggle="modal"
+              data-target="#logoutModal"
+              >Logout
+            </a>
+          </li> -->
+        </ul>
+      
+      </div>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Main Content -->
+          <keep-alive>
+            <component v-bind:is="currentTabComponent"> </component>
+          </keep-alive>
+        </div>
+
+        <!-- Sticky Footer -->
+        <!-- <footer-comp /> -->
+      </div>
+    </div>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <logout-modal-comp />
+  </div>
+    <!-- /#wrapper -->
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+  <!-- Demo scripts for this page-->
+  <script src="js/datatables-demo.js"></script>
+  <!-- Main script -->
+  <script>
+    Vue.component('tab-customers', {
+      template: `
+      <div class="card mb-3">
+            <div class="card-header">
+              <h6>
+                Customers
+              </h6>
+              <div class="small text-muted">
+                <span>
+                  Click name below to see transaction details, or
+                  <a href="/register">Register</a> here.
+                </span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  class="table table-bordered"
+                  id="dataTable"
+                  width="100%"
+                  cellspacing="0"
+                >
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Area</th>
+                      <th class="prevent-wordreak">Contact Details</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Area</th>
+                      <th class="prevent-wordbreak">Contact Details</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <!-- end add customer section -->
+                    <tr v-for="customer in customers" :key="customer.id">
+                      <td>
+                        <span v-show="userId == 1">
+                          <i
+                            class="fa fa-check"
+                            :title="icon_title_upd"
+                            v-show="selected_id === customer.id"
+                            @click.prevent="updCust(customer)"
+                          ></i>
+
+                          <i
+                            class="fa fa-times"
+                            :title="icon_title_cancel"
+                            v-show="selected_id === customer.id"
+                            @click.prevent="canclUpdate"
+                          ></i>
+
+                          <i
+                            class="fas fa-pencil-alt"
+                            :title="icon_title_edit"
+                            v-show="selected_id === ''"
+                            @click.prevent="showUpdateForm(customer.id)"
+                          ></i>
+
+                          <i
+                            class="fas fa-trash-alt"
+                            :title="icon_title_del"
+                            v-show="selected_id === ''"
+                            @click.prevent="deleteCustomerAction(customer)"
+                          ></i>
+                        </span>
+
+                        <a
+                          @click="myDetails(customer.name)"
+                          href="/customer_sales"
+                        >
+                          {{ customer.name }}
+                        </a>
+
+                        <input
+                          type="text"
+                          v-model="customer.name"
+                          v-show="selected_id === customer.id"
+                        />
+                      </td>
+                      <td>
+                        {{ customer.area }}
+                        <input
+                          type="text"
+                          v-model="customer.area"
+                          v-show="selected_id === customer.id"
+                        />
+                      </td>
+                      <td>
+                        {{ customer.contact }}
+                        <input
+                          type="number"
+                          v-model.number="customer.contact"
+                          v-show="selected_id === customer.id"
+                        />
+                        <input
+                          class="input-passcode"
+                          type="text"
+                          v-model="customer.passcode"
+                          v-show="selected_id === customer.id"
+                          placeholder="your passcode here"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">
+              <span>
+                Total Number of Customers : {{ totalCustomerGetter }}
+              </span>
+            </div>
+          </div>
+        `,
+      data() {
+        return {
+          selected_id: '',
+          icon_title_add: 'Click here to register',
+          icon_title_edit: 'Edit',
+          icon_title_upd: 'Update',
+          icon_title_cancel: 'Cancel',
+          icon_title_del: 'Delete'
+        };
+      },
+      computed: {
+        ...Vuex.mapState('customersModule', ['customers']),
+        ...Vuex.mapState('authModule', ['userId', 'toggleSidebar']),
+        ...Vuex.mapGetters('customersModule', ['totalCustomerGetter'])
+      },
+      methods: {
+        ...Vuex.mapActions('customersModule', [
+          'getCustomersAction',
+          'updateCustomerAction',
+          'deleteCustomerAction'
+        ]),
+        ...Vuex.mapActions('salesModule', ['getSalesAction', 'getCustomerDetails']),
+        ...Vuex.mapActions('expensesModule', ['getItemsAction']),
+
+        myDetails(cust_name) {
+          this.getCustomerDetails(cust_name);
+        },
+
+        showUpdateForm(customer_id) {
+          this.selected_id = customer_id;
+        },
+
+        // update customer section
+        updCust(selected_cust) {
+          this.updateCustomerAction({
+            id: selected_cust.id,
+            name: selected_cust.name,
+            area: selected_cust.area,
+            contact: selected_cust.contact,
+            passcode: selected_cust.passcode
+          });
+          this.selected_id = '';
+        },
+
+        canclUpdate() {
+          this.selected_id = '';
+        }
+      }
+    });
+
+    const customersModule = {
+      namespaced: true,
+      state: () => ({
+        customers: [
+          {
+            id: 2,
+            user_id: 1,
+            name: 'B.Edil',
+            area: 'Dalahican',
+            seller: 'station',
+            contact: null,
+            remarks: null,
+            created_at: '2021-10-12 19:22:34',
+            updated_at: '2022-12-13 02:12:54'
+          },
+          {
+            id: 40,
+            user_id: 1,
+            name: 'B.Gerry',
+            area: 'Bantigue',
+            seller: 'station',
+            contact: null,
+            remarks: null,
+            created_at: '2021-10-12 19:47:45',
+            updated_at: '2022-07-14 17:10:19'
+          },
+          {
+            id: 92,
+            user_id: 1,
+            name: 'B. Jose Guevarra',
+            area: 'Cotta',
+            seller: 'station',
+            contact: null,
+            remarks: null,
+            created_at: '2022-10-31 17:25:23',
+            updated_at: '2022-10-31 17:25:23'
+          },
+          {
+            id: 98,
+            user_id: 1,
+            name: 'Sis MG Cabiltes',
+            area: 'Cotta',
+            seller: 'station',
+            contact: null,
+            remarks: null,
+            created_at: '2022-12-09 23:37:31',
+            updated_at: '2022-12-09 23:37:31'
+          },
+          {
+            id: 99,
+            user_id: 1,
+            name: 'Sis Rosalie',
+            area: 'Redv',
+            seller: 'station',
+            contact: null,
+            remarks: null,
+            created_at: '2022-12-09 23:38:02',
+            updated_at: '2022-12-09 23:38:02'
+          }
+        ]
+      }),
+      getters: {
+        totalCustomerGetter: (state) => state.customers.length
+      },
+      actions: {
+        getCustomersAction({ commit }) {
+          customerApi.fetchCust().then((res) => commit('GET_CUSTOMERS', res.data));
+        },
+        addCustomerAction({ commit }, payload) {
+          customerApi
+            .addCust(payload)
+            .then((res) => commit('ADD_CUSTOMER', payload));
+        },
+        updateCustomerAction({ commit }, payload) {
+          customerApi
+            .updateCust(payload)
+            .then((res) => commit('UPDATE_CUSTOMER', payload));
+        },
+        deleteCustomerAction({ commit }, payload) {
+          customerApi
+            .deleteCust(payload)
+            .then((res) => commit('DELETE_CUSTOMER', payload));
+        }
+      },
+      mutations: {
+        GET_CUSTOMERS: (state, payload) => {
+          state.customers = payload;
+        },
+        ADD_CUSTOMER: (state, payload) => {
+          state.customers.push(payload);
+        },
+        UPDATE_CUSTOMER: (state, cust) => {
+          const index = state.customers.findIndex(
+            (customer) => customer.id === cust.id
+          );
+          if (index !== -1) {
+            state.customers.splice(index, 1, cust);
+          }
+        },
+        DELETE_CUSTOMER: (state, payload) => {
+          const index = state.customers.findIndex(
+            (customer) => customer.id === payload.id
+          );
+          if (index !== -1) {
+            state.customers.splice(index, 1);
+          }
+        }
+      }
+    };
+
+    var store = new Vuex.Store({
+      state: {},
+      getters: {},
+      actions: {},
+      mutations: {},
+      modules: {
+        customersModule
+      }
+    });
+
+    var app = new Vue({
+      el: '#app',
+      store,
+
+      data() {
+        return {
+          currentTab: 'Customers',
+          tabs: ['Customers']
+        };
+      },
+      computed: {
+        currentTabComponent: function () {
+          return 'tab-' + this.currentTab.toLowerCase();
+        }
+      }
+    });
+  </script>
+</body>
 </html>
