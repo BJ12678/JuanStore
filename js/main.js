@@ -155,18 +155,18 @@ Vue.component('tab-customers', {
     };
   },
   computed: {
-    ...Vuex.mapState("customers", ["customers"]),
-    ...Vuex.mapState("auth", ["userId", "toggleSidebar"]),
-    ...Vuex.mapGetters("customers", ["totalCustomerGetter"])
+    ...Vuex.mapState("customersModule", ["customers"]),
+    ...Vuex.mapState("authModule", ["userId", "toggleSidebar"]),
+    ...Vuex.mapGetters("customersModule", ["totalCustomerGetter"])
   },
   methods: {
-    ...Vuex.mapActions("customers", [
+    ...Vuex.mapActions("customersModule", [
       "getCustomersAction",
       "updateCustomerAction",
       "deleteCustomerAction"
     ]),
-    ...Vuex.mapActions("sales", ["getSalesAction", "getCustomerDetails"]),
-    ...Vuex.mapActions("expenses", ["getItemsAction"]),
+    ...Vuex.mapActions("salesModule", ["getSalesAction", "getCustomerDetails"]),
+    ...Vuex.mapActions("expensesModule", ["getItemsAction"]),
 
     myDetails(cust_name) {
       this.getCustomerDetails(cust_name);
