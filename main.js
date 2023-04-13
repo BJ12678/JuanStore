@@ -19,45 +19,6 @@ Vue.component('tab-customers', {
       <!-- sidebar section -->
       <div v-show="toggleSidebar">
       <ul class="sidebar navbar-nav">
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'customers' }"
-          >Home</router-link
-        >
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'delivery' }">
-          Delivery
-        </router-link>
-      </li>
-      <li v-if="userId == 1" class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'sales' }">
-          Sales
-        </router-link>
-      </li>
-      <li v-if="userId === 1" class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'expenses' }">
-          Expenses
-        </router-link>
-      </li>
-      <li v-if="userId === 1" class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'report' }">
-          Financials
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'register' }">
-          Register
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          href="#"
-          data-toggle="modal"
-          data-target="#logoutModal"
-          >Logout
-        </a>
-      </li>
     </ul>
       </div>
 
