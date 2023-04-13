@@ -1,2 +1,2 @@
 # JuanStore
-store management system
+free online management system for certain types of business/store
