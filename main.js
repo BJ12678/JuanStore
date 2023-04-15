@@ -7,31 +7,39 @@ Vue.component('tab-home', {
 
 Vue.component('tab-customers', {
   template: `<h5>customers</h5>`,
-  data() {},
+  data() {return{some:'customers'}},
+  computed: {},
+  methods: {}
+});
+
+Vue.component('tab-delivery', {
+  template: `<h5>delivery</h5>`,
+  data() {return{some:'delivery'}},
   computed: {},
   methods: {}
 });
 
 Vue.component('tab-sales', {
-  template: `sales`,
-  data() {},
+  template: `<h5>sales</h5>`,
+  data() {return{some:'sales'}},
   computed: {},
   methods: {}
 });
 
 Vue.component('tab-expenses', {
-  template: `expenses`,
-  data() {},
+  template: `<h5>expenses</h5>`,
+  data() {return{some:'expenses'}},
   computed: {},
   methods: {}
 });
 
 Vue.component('tab-financials', {
-  template: `financials`,
-  data() {},
+  template: `<h5>financials</h5>`,
+  data() {return{some:'financials'}},
   computed: {},
   methods: {}
 });
+
 
 const customersModule = {
   namespaced: true,
@@ -20599,7 +20607,7 @@ var app = new Vue({
   data() {
     return {
       currentTab: 'Home',
-      tabs: ['Home', 'Customers', 'Sales', 'Expenses', 'Financials']
+      tabs: ['Home', 'Customers', 'Delivery', 'Sales', 'Expenses', 'Financials']
     };
   },
   computed: {
