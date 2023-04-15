@@ -584,10 +584,10 @@ Vue.component('tab-home', {
 </div>
 <!-- /.container-fluid -->
   `,
-  data() {return{some:''}},
+/*   data() {return{some:''}},
   computed: {},
   methods: {}
-});
+ */});
 
 Vue.component('tab-customers', {
   template: `
