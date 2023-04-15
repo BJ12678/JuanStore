@@ -584,7 +584,7 @@ Vue.component('tab-home', {
 </div>
 <!-- /.container-fluid -->
   `,
-  data() {},
+  data() {return{some:''}},
   computed: {},
   methods: {}
 });
@@ -21392,7 +21392,7 @@ var app = new Vue({
   data() {
     return {
       currentTab: 'Home',
-      tabs: ['Home','Customers', 'Sales', 'Expenses', 'Financials']
+      tabs: ['Home', 'Customers', 'Sales', 'Expenses', 'Financials']
     };
   },
   computed: {
