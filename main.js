@@ -1,12 +1,12 @@
 Vue.component('tab-home', {
-  template: `home`,
+  template: `<h5>home</h5>`,
    data() {return{some:''}},
   computed: {},
   methods: {}
  });
 
 Vue.component('tab-customers', {
-  template: `customers`,
+  template: `<h5>customers</h5>`,
   data() {},
   computed: {},
   methods: {}
