@@ -4384,8 +4384,7 @@ Vue.component('tab-financials', {
         </div>`,
   data() {
     return {
-      select_year: 2021
-      // select_year: new Date().getFullYear() 
+      select_year: new Date().getFullYear() 
     };
   },
   computed: {
