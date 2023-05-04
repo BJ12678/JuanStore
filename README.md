@@ -1,1 +1,1 @@
-# Eldan-CDN
+# JuanStore
