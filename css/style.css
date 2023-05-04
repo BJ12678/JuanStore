@@ -1,0 +1,40 @@
+/* body {
+	background: url("../images/photo_bg.jpg") no-repeat center center fixed;
+	background-size: cover;
+} */
+.breadcrumb-li,
+.label,
+i {
+	cursor: pointer;
+}
+
+.search-input,
+.select-month {
+	border-color: rgba(0, 0, 0, 0.14);
+	border-radius: 3px;
+	width: 125px;
+}
+
+.prevent-wordbreak {
+	white-space: nowrap;
+}
+
+.label-success,
+.input-date,
+input {
+	margin: 3px;
+}
+
+select {
+	margin: -2px;
+}
+
+.amt {
+	font-weight: bold;
+}
+
+.select-year,
+.select-month {
+	border-color: rgba(0, 0, 0, 0.03);
+	background-color: rgba(0, 0, 0, 0.03);
+}
